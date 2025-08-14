@@ -85,39 +85,39 @@ Get Address -> mov rax, var1
 add <dest>, <source>
 ```
 
-	1. dest and source must be of the same size
-	2. final result is stored into dest
-	3. dest must be able to store values (cannot do add 1, reg)
-	4. both operands cannot be in memory 
+1. dest and source must be of the same size
+2. final result is stored into dest
+3. dest must be able to store values (cannot do add 1, reg)
+4. both operands cannot be in memory 
 
 ```
 inc <operand>
 ```
 
-	1. the type must be specified (inc byte[var])
+1. the type must be specified (inc byte[var])
 
 ```
 sub <dest>, <src>
 ```
 
-	1. src and dest have to be the same size
-	2. both operands cannot be in memory
-	3. destination cannot be a number
+1. src and dest have to be the same size
+2. both operands cannot be in memory
+3. destination cannot be a number
 
 ```
 dec <operand>
 ```
 
-	1. the type must be specified (inc byte[var])
+1. the type must be specified (inc byte[var])
 
 ```
 mul <operand>   ;result is stored in eax and edx if needed for overflow
 ```
 
-	1. if operand is in AL lower bits : AL upper bits : AH
-	2. if operand is in AX lower bits : AX upper bits : DX
-	3. if operand is in EAX lower bits : EAX upper bits in EDX
-	4. if operand is in RAX lower bots : RAX upper bits in RDX
+1. if operand is in AL lower bits : AL upper bits : AH
+2. if operand is in AX lower bits : AX upper bits : DX
+3. if operand is in EAX lower bits : EAX upper bits in EDX
+4. if operand is in RAX lower bots : RAX upper bits in RDX
 
 
 # Practice(static exercices):
