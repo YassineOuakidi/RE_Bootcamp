@@ -181,9 +181,6 @@ Brief description of the challenge.
 ---
 
 ## 2. Initial Observations / Triage
-- Binary type: ELF / PE / x86 / x86-64  
-- Size / Sections / Imports / Strings  
-- Notable patterns (e.g., anti-debug checks, suspicious jumps)  
 
 >- File type: PE x86-64 executable  
 >-  Observed strings: "iwonderhowitfeelstobeatimetraveler, "heyamyspaceboardisbrokencanyouhelpmefindit?"
