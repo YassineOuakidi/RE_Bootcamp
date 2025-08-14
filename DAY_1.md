@@ -185,17 +185,13 @@ Brief description of the challenge.
 - Size / Sections / Imports / Strings  
 - Notable patterns (e.g., anti-debug checks, suspicious jumps)  
 
-> Example:
-- File type: PE x86-64 executable  
-- Observed strings: "iwonderhowitfeelstobeatimetraveler, "heyamyspaceboardisbrokencanyouhelpmefindit?"
+>- File type: PE x86-64 executable  
+>-  Observed strings: "iwonderhowitfeelstobeatimetraveler, "heyamyspaceboardisbrokencanyouhelpmefindit?"
+
 
 ---
 
 ## 3. Static Analysis
-- Open binary in Ghidra  
-- Identify `main` function / entry point  
-- Locate the password/check routine  
-- Identify key instructions (e.g., `strcmp`, loops, xor operations)
 
 > Example:
 - Found string comparison inside main function and a lot of if-else statements:
