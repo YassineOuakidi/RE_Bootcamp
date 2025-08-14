@@ -192,7 +192,7 @@ Brief description of the challenge.
 
 > Example:
 - Found string comparison inside main function and a lot of if-else statements:
- ![[Pasted image 20250814232207.png]]
+ ![Static analysis screenshot](Pasted_image_20250814232207.png)
 
 
 ---
