@@ -201,3 +201,94 @@ Brief description of the challenge.
 
 Username : iwonderhowitfeelstobeatimetraveler
 Password : heyamyspaceboardisbrokencanyouhelpmefindit?
+
+## 45exile's Shuffle
+
+**Link:** [link](https://crackmes.one/crackme/686f1b56aadb6eeafb399171)  
+**Difficulty:** Beginner /   
+**Platform:**  Linux   
+**Tools Used:** Ghidra
+
+---
+
+## 1. Objective
+
+> FInd Password.
+
+
+---
+
+## 2. Initial Observations / Triage
+
+- File type: ELF x86-64 executable  
+- Observed strings: "No... Maybe another time !" 
+
+---
+
+## 3. Static Analysis
+- Open binary in Ghidra / IDA  
+- Identify `main` function / entry point  
+- Locate the password/check routine  
+- Identify key instructions (e.g., `strcmp`, loops, xor operations)
+
+> - Found `fgets` function which reads my login attempt  
+> - Found `strcmp` that compares "Ygta_u3G_t0h_0aG_r3" to an password attempt copy which has been processed in another function
+> - Loop inside the FUN... function that shuffles my input with `srand()` and `rand()` .
+
+---
+
+## 4. Reverse Engineering Steps
+- Describe how you traced the logic in static analysis  
+- If you reimplemented the check in Python, describe it  
+
+>- Decompiled the executable using GHIDRA and tracked down the string "Enter the password please :" .
+>- Followed the logic that led me to the function that does the shuffle.
+>- reversed the shuffle algorithm because rand() returns the same sequence when using srand with the same value as a parameter.
+
+### Code to reshuffle :
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void FUN(char *pass , int len , int l)
+{
+	srand(l);
+	int *arr = malloc(len * sizeof(int));
+	char *ans = malloc(len);
+	for(int i = len-1 ; i>=0 ; i--)
+		arr[i] = rand();
+	
+	for(int i = 0 ; i <len ; i++)
+	{
+		char tmp = pass[i];
+		pass[i] = pass[arr[i]%(i+1)];
+		pass[arr[i]%(i+1)] = tmp;
+	}
+	printf("%s\n" , pass);
+}
+
+
+int main()
+{
+	char *str = "Gommage";
+	int i = 0;
+	int j = 0;
+	while(str[i])
+	{
+		j = "Gommage"[i] + j * 0x1f;
+		i++;
+	}
+	printf("%d\n" , j);
+	char pass[] = "Ygta_u3G_t0h_0aG_r3";
+
+	FUN( pass , strlen("Ygta_u3G_t0h_0aG_r3") , j);
+	
+}
+```
+
+---
+
+## 5. Solution / Key Found
+
+> GG_Y0u_ar3_th3_g0at
